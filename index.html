@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Automatebarber.ai | Barbershop</title>
+  <meta name="description" content="Automatebarber.ai is a modern American barbershop. Book in seconds, track every cut, check live prices and get a free style consult.">
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="preload" as="image" href="images/hero.jpg">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230b0b0c'/><rect x='5.5' y='5.5' width='21' height='21' fill='none' stroke='%23cbb08a'/><text x='16' y='21.5' text-anchor='middle' font-family='Arial' font-weight='700' font-size='14' fill='%23cbb08a'>A</text></svg>">
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav__inner">
+      <a href="#top" class="logo" aria-label="Automatebarber.ai home">
+        <span class="logo__mark" aria-hidden="true">A</span>
+        <span class="logo__word">Automatebarber<span>.ai</span></span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="Main">
+        <a href="#online">Online services</a>
+        <a href="#services">Prices</a>
+        <a href="#consult">Style consult</a>
+        <a href="#barbers">Barbers</a>
+        <a href="#records">My visits <span class="badge" id="navBadge" hidden></span></a>
+        <a href="#book" class="btn btn--primary btn--sm">Book a chair</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <i class="ph-light ph-list" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <img class="hero__img" src="images/hero.jpg" alt="A barber giving a client a skin fade in a dark, warmly lit barbershop" width="1800" height="1007">
+      <div class="hero__scrim" aria-hidden="true"></div>
+      <div class="wrap hero__content">
+        <h1 class="hero__title">Every cut, booked<br><span>and remembered.</span></h1>
+        <p class="hero__lead">Book in seconds, track every visit, check live prices and get a style recommendation before you sit down.</p>
+        <div class="hero__cta">
+          <a href="#book" class="btn btn--primary">Book a chair <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a>
+          <a href="#consult" class="btn btn--outline">Find my style</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ONLINE SERVICES HIGHLIGHT -->
+    <section class="highlights section" id="online">
+      <div class="wrap">
+        <header class="head head--left">
+          <h2>Our services, all online.</h2>
+          <p class="lead">Book, track, compare and get advice right here, day or night. No phone calls.</p>
+        </header>
+
+        <div class="hl-grid">
+          <article class="hl hl--book">
+            <img class="hl__bg" src="images/interior.jpg" alt="" loading="lazy" width="1356" height="1800">
+            <div class="hl__body">
+              <i class="ph-light ph-calendar-check hl__icon" aria-hidden="true"></i>
+              <h3>Book in seconds</h3>
+              <p>Pick your service, barber and time. Confirmation by text, free cancellation up to 2 hours before.</p>
+              <p class="hl__live"><i class="ph-fill ph-circle" aria-hidden="true"></i> <span id="hlOpen">Checking hours</span></p>
+              <a href="#book" class="btn btn--primary">Book a chair <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+
+          <article class="hl hl--consult">
+            <img class="hl__bg" src="images/fade.jpg" alt="" loading="lazy" width="1356" height="1800">
+            <div class="hl__body">
+              <i class="ph-light ph-sparkle hl__icon" aria-hidden="true"></i>
+              <h3>Style consult and recommendations</h3>
+              <p>Four quick questions. Get a recommended cut, the right service and the best barber for it.</p>
+              <a href="#consult" class="btn btn--outline">Find my style</a>
+            </div>
+          </article>
+
+          <article class="hl hl--records">
+            <div class="hl__body">
+              <i class="ph-light ph-clock-counter-clockwise hl__icon" aria-hidden="true"></i>
+              <h3>Track your records</h3>
+              <p>Enter your mobile number to see every visit, cut note and reward, with a reminder when your next cut is due.</p>
+              <dl class="hl__stats">
+                <div><dt>Visits on file</dt><dd id="hlVisits">0</dd></div>
+                <div><dt>Next cut due</dt><dd id="hlDue">Not booked</dd></div>
+              </dl>
+              <a href="#records" class="link">Open my visits <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+
+          <article class="hl hl--prices">
+            <div class="hl__body">
+              <i class="ph-light ph-tag hl__icon" aria-hidden="true"></i>
+              <h3>Always current prices</h3>
+              <p>When the shop updates a price, the menu and booking form update instantly. What you see is what you pay.</p>
+              <dl class="hl__prices" id="hlPrices"></dl>
+              <a href="#services" class="link">See the full menu <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES (rendered from data in script.js) -->
+    <section class="services section" id="services">
+      <div class="wrap">
+        <header class="head head--split">
+          <div>
+            <p class="eyebrow">Services and pricing</p>
+            <h2>The menu</h2>
+          </div>
+          <p class="updated" id="pricesUpdated"></p>
+        </header>
+
+        <div class="menu" id="menu"></div>
+
+        <article class="signature">
+          <img src="images/shave.jpg" alt="Straight razor shave with a hot towel" loading="lazy" width="1356" height="1800">
+          <div class="signature__body">
+            <h3>The Full Service</h3>
+            <p>Signature cut, beard sculpt and hot towel shave in one 80 minute appointment. Our most booked service.</p>
+            <div class="signature__foot">
+              <span class="signature__price" data-price="full"></span>
+              <button type="button" class="btn btn--outline" data-book-service="full">Book a chair</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- STYLE CONSULT -->
+    <section class="consult section" id="consult">
+      <div class="wrap">
+        <header class="head head--left">
+          <h2>Not sure what to ask for?</h2>
+          <p class="lead">Answer four quick questions. We'll recommend a cut, the right service and the barber who does it best.</p>
+        </header>
+
+        <div class="consult__grid">
+          <form class="quiz" id="quiz">
+            <fieldset>
+              <legend>1. Your hair type</legend>
+              <div class="chips">
+                <label><input type="radio" name="hair" value="straight"><span>Straight</span></label>
+                <label><input type="radio" name="hair" value="wavy"><span>Wavy</span></label>
+                <label><input type="radio" name="hair" value="curly"><span>Curly</span></label>
+                <label><input type="radio" name="hair" value="coily"><span>Coily</span></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>2. Your face shape</legend>
+              <div class="chips">
+                <label><input type="radio" name="face" value="oval"><span>Oval</span></label>
+                <label><input type="radio" name="face" value="round"><span>Round</span></label>
+                <label><input type="radio" name="face" value="square"><span>Square</span></label>
+                <label><input type="radio" name="face" value="long"><span>Long</span></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>3. What matters most</legend>
+              <div class="chips">
+                <label><input type="radio" name="pref" value="low"><span>Low maintenance</span></label>
+                <label><input type="radio" name="pref" value="sharp"><span>Always sharp</span></label>
+                <label><input type="radio" name="pref" value="classic"><span>Classic</span></label>
+                <label><input type="radio" name="pref" value="trendy"><span>On trend</span></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>4. Your beard</legend>
+              <div class="chips">
+                <label><input type="radio" name="beard" value="none"><span>Clean shaven</span></label>
+                <label><input type="radio" name="beard" value="stubble"><span>Stubble</span></label>
+                <label><input type="radio" name="beard" value="full"><span>Full beard</span></label>
+              </div>
+            </fieldset>
+          </form>
+
+          <div class="result" id="result" aria-live="polite">
+            <div class="result__empty" id="resultEmpty">
+              <i class="ph-light ph-scissors" aria-hidden="true"></i>
+              <p>Your recommendation appears here as soon as all four questions are answered.</p>
+              <p class="result__progress" id="quizProgress">0 of 4 answered</p>
+            </div>
+            <div class="result__card" id="resultCard" hidden>
+              <p class="result__label">We recommend</p>
+              <h3 class="result__style" id="rStyle"></h3>
+              <p class="result__why" id="rWhy"></p>
+              <dl class="result__specs">
+                <div><dt>Service</dt><dd id="rService"></dd></div>
+                <div><dt>Price</dt><dd id="rPrice"></dd></div>
+                <div><dt>Rebook every</dt><dd id="rEvery"></dd></div>
+              </dl>
+              <div class="result__barber">
+                <img id="rBarberImg" src="images/barber-marcus.jpg" alt="" width="1356" height="1800">
+                <div><p class="result__small">Best barber for this</p><p id="rBarber"></p></div>
+              </div>
+              <button type="button" class="btn btn--primary btn--block" id="rBook">Book a chair</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BARBERS -->
+    <section class="barbers section" id="barbers">
+      <div class="wrap">
+        <header class="head head--left">
+          <h2>The barbers</h2>
+          <p class="lead">Four specialists, each with a craft they're known for.</p>
+        </header>
+        <div class="team">
+          <article class="member">
+            <img src="images/barber-marcus.jpg" alt="Marcus Reed, owner and master barber" loading="lazy" width="1356" height="1800">
+            <h3>Marcus Reed</h3>
+            <p>Owner, master barber. Fades and tapers.</p>
+          </article>
+          <article class="member">
+            <img src="images/barber-dre.jpg" alt="Andre Morales, senior barber" loading="lazy" width="1356" height="1800">
+            <h3>Andre Morales</h3>
+            <p>Senior barber. Line-ups, waves and designs.</p>
+          </article>
+          <article class="member">
+            <img src="images/barber-tony.jpg" alt="Tony Lombardi, shave specialist" loading="lazy" width="1356" height="1800">
+            <h3>Tony Lombardi</h3>
+            <p>Shave specialist. Classic cuts and razor work.</p>
+          </article>
+          <article class="member">
+            <img src="images/barber-sam.jpg" alt="Sam Kwan, barber" loading="lazy" width="1356" height="1800">
+            <h3>Sam Kwan</h3>
+            <p>Barber. Textured crops and curls.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="work section" id="work">
+      <div class="wrap">
+        <header class="head head--split">
+          <h2>Recent work</h2>
+          <a href="#" class="link">See more on Instagram <i class="ph-light ph-arrow-up-right" aria-hidden="true"></i></a>
+        </header>
+        <div class="bento">
+          <img class="bento__a" src="images/fade.jpg" alt="Skin fade with a razor part, seen from behind" loading="lazy" width="1356" height="1800">
+          <img class="bento__b" src="images/taper.jpg" alt="Barber styling a classic side part taper, seen in the mirror" loading="lazy" width="1800" height="1007">
+          <img class="bento__c" src="images/beard.jpg" alt="Barber sculpting a full beard with clippers" loading="lazy" width="1800" height="1800">
+          <img class="bento__d" src="images/tools.jpg" alt="Straight razor, comb, scissors, shaving brush, pomade and clippers on slate" loading="lazy" width="1800" height="1800">
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews section">
+      <div class="wrap reviews__inner">
+        <div class="stars" aria-label="Rated 5 out of 5">
+          <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+        </div>
+        <div class="quotes" aria-live="polite">
+          <figure class="quote is-active">
+            <blockquote>“Booked at 7am, in the chair at 8 sharp. Best fade I've had in years, and zero waiting.”</blockquote>
+            <figcaption><strong>Jordan Price</strong> Regular, Skin Fade</figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>“The style consult suggested a crop I'd never have asked for. Now it's the only cut I get.”</blockquote>
+            <figcaption><strong>Chris Maddox</strong> Regular, Signature Cut</figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>“They remembered exactly how I like my cut. Same result every visit, no explaining.”</blockquote>
+            <figcaption><strong>Andre Whitfield</strong> Regular, Full Service</figcaption>
+          </figure>
+        </div>
+        <div class="quotes__nav">
+          <button class="icon-btn" id="prevQuote" aria-label="Previous review"><i class="ph-light ph-arrow-left"></i></button>
+          <span class="quotes__count" id="quoteCount">1 / 3</span>
+          <button class="icon-btn" id="nextQuote" aria-label="Next review"><i class="ph-light ph-arrow-right"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIQUE FEATURES -->
+    <section class="extras section" id="extras">
+      <div class="wrap">
+        <header class="head head--left">
+          <h2>Small things that save you time.</h2>
+          <p class="lead">Features you won't find at most barbershops, built into every booking.</p>
+        </header>
+        <div class="extras__list">
+          <a class="extra" href="#book">
+            <i class="ph-light ph-lightning" aria-hidden="true"></i>
+            <h3>Your usual, in one tap</h3>
+            <p>We remember your service, barber and details. Rebook your regular cut without filling in a thing.</p>
+          </a>
+          <a class="extra" href="#records">
+            <i class="ph-light ph-seal-check" aria-hidden="true"></i>
+            <h3>Rewards card</h3>
+            <p>Every haircut earns a stamp. Your 8th one is on us, redeemed right in the booking form.</p>
+          </a>
+          <a class="extra" href="#records">
+            <i class="ph-light ph-bell-ringing" aria-hidden="true"></i>
+            <h3>Calendar and reminders</h3>
+            <p>Add any booking to Apple, Google or Outlook calendar, and get a reminder when your next cut is due.</p>
+          </a>
+          <a class="extra" href="#book">
+            <i class="ph-light ph-users-three" aria-hidden="true"></i>
+            <h3>Family and group booking</h3>
+            <p>Bring your son, your brother or the groomsmen. Book up to four people back to back in one go.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOK + VISIT -->
+    <section class="book section" id="book">
+      <div class="wrap book__grid">
+        <div class="book__form">
+          <p class="eyebrow">Reservations</p>
+          <h2>Book a chair</h2>
+          <p class="lead">Confirmation by text. Free cancellation up to 2 hours before.</p>
+
+          <form id="bookingForm" novalidate>
+            <div class="usual" id="usual" hidden>
+              <i class="ph-light ph-lightning" aria-hidden="true"></i>
+              <div>
+                <p class="usual__label">Welcome back. Book your usual?</p>
+                <p class="usual__value" id="usualText"></p>
+              </div>
+              <button type="button" class="btn btn--outline btn--sm" id="useUsual">Use my usual</button>
+            </div>
+            <div class="fields">
+              <div class="field">
+                <label for="fService">Service</label>
+                <select id="fService" name="service" required></select>
+                <p class="field__error">Please choose a service.</p>
+              </div>
+              <div class="field">
+                <label for="fBarber">Barber</label>
+                <select id="fBarber" name="barber"></select>
+              </div>
+              <div class="field">
+                <label for="bookDate">Date</label>
+                <input type="date" id="bookDate" name="date" required>
+                <p class="field__error">Please pick a date.</p>
+              </div>
+              <div class="field">
+                <label for="bookTime">Time</label>
+                <select id="bookTime" name="time" required>
+                  <option value="">Pick a date first</option>
+                </select>
+                <p class="field__error">Please choose a time.</p>
+              </div>
+              <div class="field">
+                <label for="fName">Full name</label>
+                <input type="text" id="fName" name="name" autocomplete="name" required>
+                <p class="field__error">Please enter your name.</p>
+              </div>
+              <div class="field">
+                <label for="fPhone">Mobile number</label>
+                <input type="tel" id="fPhone" name="phone" autocomplete="tel" inputmode="tel" required>
+                <p class="field__error">Please enter a 10 digit mobile number.</p>
+              </div>
+              <div class="field field--full">
+                <label for="fNotes">Notes for your barber <span class="optional">(optional)</span></label>
+                <input type="text" id="fNotes" name="notes" placeholder="e.g. #2 on the sides, keep length on top">
+              </div>
+            </div>
+
+            <div class="group" id="group">
+              <div class="group__head">
+                <div>
+                  <p class="group__title">Booking for others too?</p>
+                  <p class="group__hint">Extra guests get back-to-back slots with the same barber.</p>
+                </div>
+                <button type="button" class="btn btn--outline btn--sm" id="addGuest"><i class="ph-light ph-plus" aria-hidden="true"></i> Add a person</button>
+              </div>
+              <div class="group__list" id="guestList"></div>
+            </div>
+
+            <label class="reward-toggle" id="rewardToggle" hidden>
+              <input type="checkbox" id="useReward" name="reward">
+              <span><i class="ph-light ph-seal-check" aria-hidden="true"></i> Use my free haircut reward</span>
+            </label>
+            <div class="summary" id="bookSummary" hidden></div>
+            <button type="submit" class="btn btn--primary btn--block">Confirm booking</button>
+            <p class="form__msg" id="formMsg" role="status"></p>
+          </form>
+        </div>
+
+        <aside class="visit" id="visit">
+          <div class="visit__block">
+            <h3><i class="ph-light ph-map-pin" aria-hidden="true"></i> Location</h3>
+            <!-- Placeholder address: replace with the real one -->
+            <address>123 Main Street<br>Your City, ST 00000</address>
+            <a class="link" href="https://maps.google.com/?q=123+Main+Street" target="_blank" rel="noopener">Get directions <i class="ph-light ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+          <div class="visit__block">
+            <h3><i class="ph-light ph-phone" aria-hidden="true"></i> Contact</h3>
+            <p><a href="tel:+15551234567">(555) 123-4567</a><br><a href="mailto:hello@automatebarber.ai">hello@automatebarber.ai</a></p>
+          </div>
+          <div class="visit__block">
+            <h3><i class="ph-light ph-clock" aria-hidden="true"></i> Hours</h3>
+            <table class="hours">
+              <tbody>
+                <tr><th>Monday</th><td>10am - 7pm</td></tr>
+                <tr><th>Tuesday</th><td>9am - 8pm</td></tr>
+                <tr><th>Wednesday</th><td>9am - 8pm</td></tr>
+                <tr><th>Thursday</th><td>9am - 8pm</td></tr>
+                <tr><th>Friday</th><td>8am - 9pm</td></tr>
+                <tr><th>Saturday</th><td>8am - 6pm</td></tr>
+                <tr><th>Sunday</th><td>10am - 4pm</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- MY VISITS -->
+    <section class="records section" id="records">
+      <div class="wrap">
+        <header class="head head--left">
+          <h2>My visits</h2>
+          <p class="lead">Track your bookings, cut history, notes and rewards with the mobile number you booked with.</p>
+        </header>
+
+        <form class="lookup" id="lookup" novalidate>
+          <i class="ph-light ph-device-mobile lookup__icon" aria-hidden="true"></i>
+          <div class="lookup__copy">
+            <h3>Find your records by phone</h3>
+            <p>Enter your mobile number to see every visit, your rewards and when your next cut is due.</p>
+          </div>
+          <div class="lookup__row">
+            <div class="field">
+              <label for="lookupPhone">Mobile number</label>
+              <input type="tel" id="lookupPhone" autocomplete="tel" inputmode="tel" placeholder="(555) 123-4567" required>
+              <p class="field__error">Please enter a 10 digit mobile number.</p>
+            </div>
+            <button type="submit" class="btn btn--primary">Find my visits</button>
+          </div>
+        </form>
+
+        <div class="records__body" id="recordsBody" hidden>
+        <div class="account">
+          <p><i class="ph-light ph-device-mobile" aria-hidden="true"></i> Showing records for <strong id="accountPhone"></strong></p>
+          <button type="button" class="mini-link" id="changePhone">Use a different number</button>
+        </div>
+
+        <dl class="stats" id="stats">
+          <div><dt>Total visits</dt><dd id="sTotal">0</dd></div>
+          <div><dt>Last cut</dt><dd id="sLast">None yet</dd></div>
+          <div><dt>Next cut due</dt><dd id="sDue">Book your first visit</dd><button type="button" class="mini-link" id="remindBtn" hidden><i class="ph-light ph-bell-ringing" aria-hidden="true"></i> Remind me</button></div>
+          <div><dt>Favorite service</dt><dd id="sFav">None yet</dd></div>
+        </dl>
+
+        <div class="rewards" id="rewards">
+          <div class="rewards__info">
+            <h3><i class="ph-light ph-seal-check" aria-hidden="true"></i> Rewards card</h3>
+            <p id="rewardText">Every 8th haircut is free.</p>
+          </div>
+          <ol class="stamps" id="stamps" aria-label="Reward stamps"></ol>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Visits">
+          <button role="tab" class="tab is-active" aria-selected="true" data-tab="upcoming">Upcoming <span id="cUpcoming">0</span></button>
+          <button role="tab" class="tab" aria-selected="false" data-tab="history">History <span id="cHistory">0</span></button>
+        </div>
+
+        <div id="visitList" class="visit-list"></div>
+        </div>
+        <p class="records__note"><i class="ph-light ph-lock-simple" aria-hidden="true"></i> Your records are linked to your mobile number.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="footer__word">Automatebarber<span>.ai</span></p>
+      <div class="footer__row">
+        <nav class="footer__links" aria-label="Footer">
+          <a href="#services">Prices</a>
+          <a href="#consult">Style consult</a>
+          <a href="#records">My visits</a>
+          <a href="#book">Book a chair</a>
+          <button type="button" class="footer__staff" id="openStaff"><i class="ph-light ph-gear-six" aria-hidden="true"></i> Staff: update prices</button>
+        </nav>
+        <nav class="footer__social" aria-label="Social">
+          <a href="#" aria-label="Instagram"><i class="ph-light ph-instagram-logo"></i></a>
+          <a href="#" aria-label="TikTok"><i class="ph-light ph-tiktok-logo"></i></a>
+          <a href="#" aria-label="Google reviews"><i class="ph-light ph-google-logo"></i></a>
+        </nav>
+      </div>
+      <p class="footer__copy">© <span id="year"></span> Automatebarber.ai. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- STAFF PRICE MANAGER -->
+  <dialog class="staff" id="staff" aria-labelledby="staffTitle">
+    <form method="dialog" class="staff__inner" id="staffForm">
+      <header class="staff__head">
+        <div>
+          <h2 id="staffTitle">Update prices</h2>
+          <p class="lead">Changes go live on the menu and booking form as soon as you save.</p>
+        </div>
+        <button type="button" class="icon-btn" id="closeStaff" aria-label="Close"><i class="ph-light ph-x"></i></button>
+      </header>
+      <div class="staff__rows" id="staffRows"></div>
+      <footer class="staff__foot">
+        <button type="button" class="btn btn--outline btn--sm" id="resetPrices">Reset to defaults</button>
+        <button type="submit" class="btn btn--primary btn--sm" id="savePrices">Save prices</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <a href="#book" class="mobile-cta btn btn--primary">Book a chair</a>
+
+  <script src="script.js"></script>
+</body>
+</html>
