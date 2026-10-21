@@ -4,23 +4,25 @@
    (localStorage) until a real backend is connected.
    ========================================================= */
 
+// Default prices are the medians of 15 independent US barbershops' published menus
+// (researched 22 Oct 2026, sources in prd/pricing-research.md). Durations are this shop's own.
 const SERVICES = [
-  { id: 'signature', name: 'Signature Cut',         group: 'Haircuts',        mins: 45, price: 40, every: 4 },
-  { id: 'fade',      name: 'Skin Fade',             group: 'Haircuts',        mins: 50, price: 45, every: 3 },
-  { id: 'kids',      name: 'Kids Cut, 12 and under', group: 'Haircuts',       mins: 30, price: 30, every: 4 },
-  { id: 'senior',    name: 'Senior and Military',   group: 'Haircuts',        mins: 45, price: 32, every: 4 },
-  { id: 'shave',     name: 'Hot Towel Shave',       group: 'Shave and Beard', mins: 40, price: 38, every: 2 },
-  { id: 'beard',     name: 'Beard Sculpt',          group: 'Shave and Beard', mins: 30, price: 28, every: 2 },
-  { id: 'lineup',    name: 'Line-Up',               group: 'Shave and Beard', mins: 15, price: 20, every: 2 },
-  { id: 'headshave', name: 'Head Shave',            group: 'Shave and Beard', mins: 35, price: 35, every: 1 },
-  { id: 'full',      name: 'The Full Service',      group: 'Featured',        mins: 80, price: 75, every: 3 },
+  { id: 'signature', name: 'Signature Cut',         group: 'Haircuts',        mins: 45, price: 50, every: 4 },
+  { id: 'fade',      name: 'Skin Fade',             group: 'Haircuts',        mins: 50, price: 55, every: 3 },
+  { id: 'kids',      name: 'Kids Cut, 12 and under', group: 'Haircuts',       mins: 30, price: 35, every: 4 },
+  { id: 'senior',    name: 'Senior and Military',   group: 'Haircuts',        mins: 45, price: 45, every: 4 },
+  { id: 'shave',     name: 'Hot Towel Shave',       group: 'Shave and Beard', mins: 40, price: 50, every: 2 },
+  { id: 'beard',     name: 'Beard Sculpt',          group: 'Shave and Beard', mins: 30, price: 30, every: 2 },
+  { id: 'lineup',    name: 'Line-Up',               group: 'Shave and Beard', mins: 15, price: 25, every: 2 },
+  { id: 'headshave', name: 'Head Shave',            group: 'Shave and Beard', mins: 35, price: 45, every: 1 },
+  { id: 'full',      name: 'The Full Service',      group: 'Featured',        mins: 80, price: 110, every: 3 },
 ];
 
 const BARBERS = [
-  { id: 'marcus', name: 'Marcus Reed',   img: 'images/barber-marcus.jpg' },
-  { id: 'andre',  name: 'Andre Morales', img: 'images/barber-dre.jpg' },
-  { id: 'tony',   name: 'Tony Lombardi', img: 'images/barber-tony.jpg' },
-  { id: 'sam',    name: 'Sam Kwan',      img: 'images/barber-sam.jpg' },
+  { id: 'marcus', name: 'Marcus Reed',   img: 'images/barber-marcus-sm.jpg' },
+  { id: 'andre',  name: 'Andre Morales', img: 'images/barber-dre-sm.jpg' },
+  { id: 'tony',   name: 'Tony Lombardi', img: 'images/barber-tony-sm.jpg' },
+  { id: 'sam',    name: 'Sam Kwan',      img: 'images/barber-sam-sm.jpg' },
 ];
 
 // Style consult rules: each style lists the answers it suits.
@@ -70,8 +72,12 @@ const store = {
 };
 
 const DEFAULT_PRICES = Object.fromEntries(SERVICES.map(s => [s.id, s.price]));
-let prices = { ...DEFAULT_PRICES, ...store.get('ab_prices', {}) };
-let pricesUpdated = store.get('ab_prices_updated', null);
+// Versioned: the defaults moved to researched US prices, so price maps saved against the
+// old defaults are left behind rather than masking the new menu.
+const PRICES_KEY = 'ab_prices_v2';
+const PRICES_UPDATED_KEY = 'ab_prices_updated_v2';
+let prices = { ...DEFAULT_PRICES, ...store.get(PRICES_KEY, {}) };
+let pricesUpdated = store.get(PRICES_UPDATED_KEY, null);
 let visits = store.get('ab_visits', []);
 
 // Records are looked up by mobile number (last 10 digits).
@@ -81,6 +87,8 @@ let currentPhone = store.get('ab_phone', '');
 const mine = () => (currentPhone ? visits.filter(v => phoneKey(v.phone) === currentPhone) : []);
 
 const $ = id => document.getElementById(id);
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
+  || document.documentElement.classList.contains('nomotion');
 const service = id => SERVICES.find(s => s.id === id);
 const barber = id => BARBERS.find(b => b.id === id);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -148,6 +156,24 @@ function toast(text) {
 /* =========================================================
    1. PRICES: menu, booking options, staff editor
    ========================================================= */
+// Prices on the menu roll like a mechanical counter when the menu first comes into view,
+// and again for any price the staff change, so a live update is visible as one.
+let menuSeen = false;
+let menuPrev = {};
+
+function rollPrice(el) {
+  const final = el.textContent;
+  if (reducedMotion) return;
+  let frame = 0;
+  clearInterval(el.rollTimer);
+  el.rollTimer = setInterval(() => {
+    frame += 1;
+    el.textContent = frame >= 8 ? final
+      : [...final].map((c, i) => (/\d/.test(c) && frame < 8 - (i % 3)) ? Math.floor(Math.random() * 10) : c).join('');
+    if (frame >= 8) clearInterval(el.rollTimer);
+  }, 55);
+}
+
 function renderMenu() {
   const groups = ['Haircuts', 'Shave and Beard'];
   $('menu').innerHTML = groups.map(g => `
@@ -157,10 +183,12 @@ function renderMenu() {
         ${SERVICES.filter(s => s.group === g).map(s => `
           <div class="item">
             <dt>${s.name} <small>${s.mins} min</small></dt>
-            <dd>${money(prices[s.id])}</dd>
+            <dd data-id="${s.id}">${money(prices[s.id])}</dd>
           </div>`).join('')}
       </dl>
     </div>`).join('');
+  if (menuSeen) $('menu').querySelectorAll('dd').forEach(dd => { if (menuPrev[dd.dataset.id] !== prices[dd.dataset.id]) rollPrice(dd); });
+  menuPrev = { ...prices };
 
   document.querySelectorAll('[data-price]').forEach(el => { el.textContent = money(prices[el.dataset.price]); });
   $('pricesUpdated').textContent = pricesUpdated
@@ -198,17 +226,19 @@ function renderStaffRows() {
 /* ---------- Online services highlight (live data) ---------- */
 const hourLabel = h => new Date(2000, 0, 1, h).toLocaleTimeString('en-US', { hour: 'numeric' }).replace(' ', '').toLowerCase();
 
+// The status line and the barber pole read the same hours: the pole turns only while open.
 function renderOpenStatus() {
   const now = new Date();
   const [open, close] = HOURS[now.getDay()];
   const hour = now.getHours() + now.getMinutes() / 60;
-  const el = $('hlOpen');
   const isOpen = hour >= open && hour < close;
-  el.parentElement.classList.toggle('is-open', isOpen);
-  if (isOpen) { el.textContent = `Open now until ${hourLabel(close)}`; return; }
-  if (hour < open) { el.textContent = `Opens today at ${hourLabel(open)}`; return; }
-  const tomorrow = HOURS[(now.getDay() + 1) % 7][0];
-  el.textContent = `Closed now. Opens tomorrow at ${hourLabel(tomorrow)}`;
+  const text = isOpen ? `Open now until ${hourLabel(close)}`
+    : hour < open ? `Opens today at ${hourLabel(open)}`
+    : `Closed now. Opens tomorrow at ${hourLabel(HOURS[(now.getDay() + 1) % 7][0])}`;
+  $('hlOpen').textContent = text;
+  $('heroOpen').textContent = text;
+  document.querySelectorAll('.live').forEach(el => el.classList.toggle('is-open', isOpen));
+  $('pole').classList.toggle('is-open', isOpen);
 }
 
 function renderHighlights() {
@@ -238,8 +268,8 @@ $('staffForm').addEventListener('submit', e => {
   if (bad) { e.preventDefault(); bad.focus(); return; }
   inputs.forEach(i => { prices[i.name] = Number(i.value); });
   pricesUpdated = toISO(new Date());
-  store.set('ab_prices', prices);
-  store.set('ab_prices_updated', pricesUpdated);
+  store.set(PRICES_KEY, prices);
+  store.set(PRICES_UPDATED_KEY, pricesUpdated);
   refreshPrices();
   toast('Prices saved. The menu and booking form are updated.');
 });
@@ -247,8 +277,8 @@ $('staffForm').addEventListener('submit', e => {
 $('resetPrices').addEventListener('click', () => {
   prices = { ...DEFAULT_PRICES };
   pricesUpdated = null;
-  store.set('ab_prices', {});
-  store.set('ab_prices_updated', null);
+  store.set(PRICES_KEY, {});
+  store.set(PRICES_UPDATED_KEY, null);
   renderStaffRows();
   refreshPrices();
   toast('Prices reset to defaults.');
@@ -459,6 +489,10 @@ function prefillBooking(serviceId, barberId, notes) {
 
 document.querySelectorAll('[data-book-service]').forEach(b => {
   b.addEventListener('click', () => prefillBooking(b.dataset.bookService));
+});
+// "Book with Marcus": the barber is chosen, the service is left for the customer.
+document.querySelectorAll('[data-book-barber]').forEach(b => {
+  b.addEventListener('click', () => prefillBooking($('fService').value, b.dataset.bookBarber));
 });
 dateInput.addEventListener('change', fillTimes);
 $('fBarber').addEventListener('change', fillTimes);
@@ -777,29 +811,96 @@ const nav = $('nav');
 const hero = document.querySelector('.hero');
 new IntersectionObserver(([entry]) => {
   nav.classList.toggle('is-solid', !entry.isIntersecting);
+  hero.classList.toggle('is-offscreen', !entry.isIntersecting); // the pole rests while nobody can see it
 }, { rootMargin: '-72px 0px 0px 0px', threshold: 0.12 }).observe(hero);
 
+// Phone and tablet menu: a full-height sheet, the booking button pinned at the bottom.
 const toggle = $('navToggle');
 const links = $('navLinks');
 function setMenu(open) {
   links.classList.toggle('is-open', open);
+  document.documentElement.classList.toggle('menu-open', open);
   toggle.setAttribute('aria-expanded', open);
   toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   toggle.innerHTML = `<i class="ph-light ${open ? 'ph-x' : 'ph-list'}" aria-hidden="true"></i>`;
 }
 toggle.addEventListener('click', () => setMenu(!links.classList.contains('is-open')));
 links.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+addEventListener('keydown', e => {
+  if (e.key === 'Escape' && links.classList.contains('is-open')) { setMenu(false); toggle.focus(); }
+});
+matchMedia('(min-width: 1101px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
 
-const revealEls = document.querySelectorAll('.hl, .extra, .rewards, .head, .menu, .signature, .quiz, .result, .member, .bento > *, .reviews__inner, .book__form, .visit, .stats');
-revealEls.forEach(el => el.classList.add('reveal'));
-const io = new IntersectionObserver(entries => {
+// Mark the nav link for the section in the middle of the screen.
+const navLinksBySection = new Map([...links.querySelectorAll('a[href^="#"]:not(.btn)')]
+  .map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
-    entry.target.classList.add('is-in');
-    io.unobserve(entry.target);
+    navLinksBySection.forEach(a => a.removeAttribute('aria-current'));
+    navLinksBySection.get(entry.target.id)?.setAttribute('aria-current', 'true');
   });
+}, { rootMargin: '-45% 0px -50% 0px' });
+document.querySelectorAll('main > section').forEach(s => spy.observe(s));
+
+/* ---------- Reveal: blocks below the fold arrive in sequence, once ----------
+   Only what starts below the fold is hidden, so nothing on screen blinks; with no
+   script, or with reduced motion, nothing is hidden at all. */
+const REVEAL = [
+  '.head .eyebrow', '.head h2', '.head > .lead', '.proof__list > div',
+  '.hl', '.hl__media', '.menu__group', '.signature', '.signature__media', '.quiz', '.result',
+  '.member', '.member__media', '.bento > .media', '.reviews__inner', '.extra',
+  '.book__form > .eyebrow', '.book__form > h2', '.book__form > .lead', '.visit > *', '.lookup',
+].join(', ');
+
+function reveal(el) {
+  if (!el.classList.contains('is-pending')) return;
+  el.classList.replace('is-pending', 'is-in');
+  revealIO.unobserve(el);
+  if (el.classList.contains('menu__group')) { menuSeen = true; el.querySelectorAll('dd').forEach(rollPrice); }
+  // hand the final state back to CSS so hovers keep their own timing
+  setTimeout(() => { el.classList.remove('is-in'); el.style.removeProperty('--d'); }, 1400);
+}
+const revealIO = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if (entry.isIntersecting) reveal(entry.target); });
 }, { rootMargin: '0px 0px -8% 0px' });
-revealEls.forEach(el => io.observe(el));
+
+function setupReveal() {
+  if (reducedMotion) { menuSeen = true; return; }
+  const fold = innerHeight * 0.94;
+  const pending = [...document.querySelectorAll(REVEAL)].filter(el => el.getBoundingClientRect().top > fold);
+  pending.forEach(el => {
+    el.classList.add('is-pending');
+    if (el.classList.contains('eyebrow')) el.style.setProperty('--chars', Math.max(8, el.textContent.trim().length));
+    const row = [...el.parentElement.children].filter(c => pending.includes(c));
+    const i = row.indexOf(el);
+    if (i > 0) el.style.setProperty('--d', `${Math.min(i, 5) * 90}ms`);
+    revealIO.observe(el);
+  });
+  if (!document.querySelector('.menu__group.is-pending')) menuSeen = true;
+  // the observer is never the only path: a sweep on scroll catches anything it missed
+  const sweep = () => document.querySelectorAll('.is-pending').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < innerHeight * 0.94 && r.bottom > 0) reveal(el);
+  });
+  addEventListener('scroll', () => requestAnimationFrame(sweep), { passive: true });
+  addEventListener('resize', sweep);
+}
+
+// Numbers in the at-a-glance strip count up one step at a time when they arrive.
+function setupCounters() {
+  const counters = [...document.querySelectorAll('[data-count]')]
+    .filter(el => !reducedMotion && el.getBoundingClientRect().top > innerHeight * 0.94);
+  const io = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    io.unobserve(entry.target);
+    const el = entry.target, target = Number(el.dataset.count);
+    let n = 0;
+    const tick = () => { el.textContent = String(++n); if (n < target) setTimeout(tick, 380 / target); };
+    setTimeout(tick, 200);
+  }), { rootMargin: '0px 0px -8% 0px' });
+  counters.forEach(el => { el.textContent = '0'; io.observe(el); });
+}
 
 const mobileCta = document.querySelector('.mobile-cta');
 const ctaHiddenBy = new Set();
@@ -826,6 +927,9 @@ $('nextQuote').addEventListener('click', () => showQuote(currentQuote + 1));
 /* ---------- Init ---------- */
 renderBarberOptions();
 renderOpenStatus();
+setInterval(renderOpenStatus, 60000); // the shop opens and closes while the page is open
 refreshPrices();
 fillTimes();
 store.set('ab_visits', visits);
+setupReveal();
+setupCounters();
