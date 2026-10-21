@@ -2,26 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Automatebarber.ai | Barbershop</title>
   <meta name="description" content="Automatebarber.ai is a modern American barbershop. Book in seconds, track every cut, check live prices and get a free style consult.">
-  <meta name="theme-color" content="#0b0b0c">
+  <meta name="theme-color" content="#120e0b">
+  <link rel="canonical" href="https://automatebarber.ai/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Automatebarber.ai">
+  <meta property="og:title" content="Automatebarber.ai | Barbershop">
+  <meta property="og:description" content="Book in seconds, track every cut, check live prices and get a free style consult.">
+  <meta property="og:url" content="https://automatebarber.ai/">
+  <meta property="og:image" content="https://automatebarber.ai/images/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Automatebarber.ai: every cut, booked and remembered.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="images/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@300..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
-  <link rel="preload" as="image" href="images/hero.jpg">
+  <link rel="preload" as="image" href="images/hero.jpg" media="(min-width: 768px)">
+  <link rel="preload" as="image" href="images/hero-mobile.jpg" media="(max-width: 767px)">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230b0b0c'/><rect x='5.5' y='5.5' width='21' height='21' fill='none' stroke='%23cbb08a'/><text x='16' y='21.5' text-anchor='middle' font-family='Arial' font-weight='700' font-size='14' fill='%23cbb08a'>A</text></svg>">
+  <script>
+    document.documentElement.classList.add('js');
+    // ?nomotion (used by the QA sweeps) switches motion off the same way reduced motion does
+    if (/[?&]nomotion\b/.test(location.search)) document.documentElement.classList.add('nomotion');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Automatebarber.ai",
+    "description": "A modern American barbershop. Book in seconds, track every cut, check live prices and get a free style consult.",
+    "url": "https://automatebarber.ai/",
+    "image": "https://automatebarber.ai/images/og.jpg",
+    "logo": "https://automatebarber.ai/images/brand/icon-512.png",
+    "telephone": "+1-555-123-4567",
+    "email": "hello@automatebarber.ai",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Main Street",
+      "addressLocality": "Your City",
+      "addressRegion": "ST",
+      "postalCode": "00000",
+      "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "10:00", "closes": "19:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "08:00", "closes": "21:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "16:00" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services and pricing",
+      "itemListElement": [
+        { "@type": "Offer", "price": "50", "priceCurrency": "USD", "itemOffered": { "@type": "Service", "name": "Signature Cut" } },
+        { "@type": "Offer", "price": "55", "priceCurrency": "USD", "itemOffered": { "@type": "Service", "name": "Skin Fade" } },
+        { "@type": "Offer", "price": "35", "priceCurrency": "USD", "itemOffered": { "@type": "Service", "name": "Kids Cut, 12 and under" } },
+        { "@type": "Offer", "price": "45", "priceCurrency": "USD", "itemOffered": { "@type": "Service", "name": "Senior and Military" } },
+        { "@type": "Offer", "price": "50", "priceCurrency": "USD", "itemOffered": { "@type": "Service", "name": "Hot Towel Shave" } },
+        { "@type": "Offer", "price": "30", "priceCurrency": "USD", "itemOffered": { "@type": "Service", "name": "Beard Sculpt" } },
+        { "@type": "Offer", "price": "25", "priceCurrency": "USD", "itemOffered": { "@type": "Service", "name": "Line-Up" } },
+        { "@type": "Offer", "price": "45", "priceCurrency": "USD", "itemOffered": { "@type": "Service", "name": "Head Shave" } },
+        { "@type": "Offer", "price": "110", "priceCurrency": "USD", "itemOffered": { "@type": "Service", "name": "The Full Service" } }
+      ]
+    }
+  }
+  </script>
 </head>
 <body>
+  <a class="skip" href="#top">Skip to content</a>
+
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="ab-mark" viewBox="0 0 64 64"><path d="M30.6 15.71L12.5 57Q16.33 32.16 26.35 12.73ZM33.4 15.71L37.65 12.73Q47.67 32.16 51.5 57ZM26 12.5A6 6 0 1 1 38 12.5A6 6 0 1 1 26 12.5ZM28.9 12.5A3.1 3.1 0 1 0 35.1 12.5A3.1 3.1 0 1 0 28.9 12.5ZM30.5 12.5A1.5 1.5 0 1 1 33.5 12.5A1.5 1.5 0 1 1 30.5 12.5ZM18.81 39.4H29.6V42.6H18.81ZM34.4 39.4H45.19V42.6H34.4Z"/></symbol>
+  </svg>
 
   <header class="nav" id="nav">
     <div class="wrap nav__inner">
       <a href="#top" class="logo" aria-label="Automatebarber.ai home">
-        <span class="logo__mark" aria-hidden="true">A</span>
-        <span class="logo__word">Automatebarber<span>.ai</span></span>
+        <svg class="logo__mark" aria-hidden="true"><use href="#ab-mark"/></svg>
+        <span class="logo__word" aria-hidden="true">Automate<em>barber</em><span>.ai</span></span>
       </a>
       <nav class="nav__links" id="navLinks" aria-label="Main">
         <a href="#online">Online services</a>
@@ -38,42 +110,67 @@
   </header>
 
   <main id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <img class="hero__img" src="images/hero.jpg" alt="A barber giving a client a skin fade in a dark, warmly lit barbershop" width="1800" height="1007">
+    <!-- HERO: one photograph settling, and a barber pole that turns only while the shop is open -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero__media">
+        <picture>
+          <source media="(max-width: 767px)" srcset="images/hero-mobile.jpg" width="900" height="1350">
+          <img src="images/hero.jpg" alt="A barber clipper-cutting a fade on a bearded client" width="1920" height="1080" fetchpriority="high">
+        </picture>
+      </div>
       <div class="hero__scrim" aria-hidden="true"></div>
       <div class="wrap hero__content">
-        <h1 class="hero__title">Every cut, booked<br><span>and remembered.</span></h1>
+        <p class="eyebrow">Modern American barbershop</p>
+        <h1 class="hero__title" id="heroTitle">Every cut, booked<br><em>and remembered.</em></h1>
         <p class="hero__lead">Book in seconds, track every visit, check live prices and get a style recommendation before you sit down.</p>
         <div class="hero__cta">
           <a href="#book" class="btn btn--primary">Book a chair <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a>
           <a href="#consult" class="btn btn--outline">Find my style</a>
         </div>
+        <p class="hero__status live" id="heroStatus"><i class="ph-fill ph-circle" aria-hidden="true"></i> <span id="heroOpen">Checking hours</span></p>
+      </div>
+      <div class="pole" id="pole" aria-hidden="true">
+        <span class="pole__cap"></span>
+        <span class="pole__glass"><span class="pole__stripes"></span></span>
+        <span class="pole__cap"></span>
       </div>
     </section>
 
-    <!-- ONLINE SERVICES HIGHLIGHT -->
-    <section class="highlights section" id="online">
+    <!-- AT A GLANCE (facts already stated further down the page) -->
+    <section class="proof" aria-label="At a glance">
+      <dl class="wrap proof__list">
+        <div><dt>Specialist barbers</dt><dd><span data-count="4">4</span></dd></div>
+        <div><dt>Days a week</dt><dd><span data-count="7">7</span></dd></div>
+        <div><dt>Haircut on us</dt><dd><span data-count="8">8</span><small>th</small></dd></div>
+        <div><dt>Free cancellation</dt><dd><span data-count="2">2</span><small>hrs</small></dd></div>
+      </dl>
+    </section>
+
+    <!-- 01 ONLINE SERVICES HIGHLIGHT -->
+    <section class="highlights section" id="online" aria-labelledby="onlineTitle">
       <div class="wrap">
-        <header class="head head--left">
-          <h2>Our services, all online.</h2>
+        <header class="head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__num">§01</span> Online services</p>
+            <h2 id="onlineTitle">Our services,<br><em>all online.</em></h2>
+          </div>
           <p class="lead">Book, track, compare and get advice right here, day or night. No phone calls.</p>
         </header>
 
         <div class="hl-grid">
           <article class="hl hl--book">
-            <img class="hl__bg" src="images/interior.jpg" alt="" loading="lazy" width="1356" height="1800">
+            <div class="hl__media media"><img src="images/interior.jpg" srcset="images/interior-800.jpg 800w, images/interior.jpg 1600w" sizes="(max-width: 767px) 100vw, 58vw" alt="" loading="lazy" width="1600" height="1067"></div>
             <div class="hl__body">
               <i class="ph-light ph-calendar-check hl__icon" aria-hidden="true"></i>
               <h3>Book in seconds</h3>
               <p>Pick your service, barber and time. Confirmation by text, free cancellation up to 2 hours before.</p>
-              <p class="hl__live"><i class="ph-fill ph-circle" aria-hidden="true"></i> <span id="hlOpen">Checking hours</span></p>
+              <p class="hl__live live"><i class="ph-fill ph-circle" aria-hidden="true"></i> <span id="hlOpen">Checking hours</span></p>
               <a href="#book" class="btn btn--primary">Book a chair <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
 
           <article class="hl hl--consult">
-            <img class="hl__bg" src="images/fade.jpg" alt="" loading="lazy" width="1356" height="1800">
+            <div class="hl__media media"><img src="images/consult.jpg" srcset="images/consult-800.jpg 800w, images/consult.jpg 1600w" sizes="(max-width: 767px) 100vw, 42vw" alt="" loading="lazy" width="1600" height="2000"></div>
             <div class="hl__body">
               <i class="ph-light ph-sparkle hl__icon" aria-hidden="true"></i>
               <h3>Style consult and recommendations</h3>
@@ -100,7 +197,7 @@
               <i class="ph-light ph-tag hl__icon" aria-hidden="true"></i>
               <h3>Always current prices</h3>
               <p>When the shop updates a price, the menu and booking form update instantly. What you see is what you pay.</p>
-              <dl class="hl__prices" id="hlPrices"></dl>
+              <dl class="hl__prices" id="hlPrices"><div><dt>Signature Cut</dt><dd>$50</dd></div><div><dt>Skin Fade</dt><dd>$55</dd></div><div><dt>Hot Towel Shave</dt><dd>$50</dd></div><div><dt>The Full Service</dt><dd>$110</dd></div></dl>
               <a href="#services" class="link">See the full menu <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
@@ -108,26 +205,48 @@
       </div>
     </section>
 
-    <!-- SERVICES (rendered from data in script.js) -->
-    <section class="services section" id="services">
+    <!-- 02 SERVICES (rendered from data in script.js), on the paper band -->
+    <section class="services section section--paper" id="services" aria-labelledby="servicesTitle">
+      <div class="section__bg" aria-hidden="true"><img src="images/bg-menu.jpg" alt="" loading="lazy" width="1200" height="800"></div>
       <div class="wrap">
-        <header class="head head--split">
+        <header class="head">
           <div>
-            <p class="eyebrow">Services and pricing</p>
-            <h2>The menu</h2>
+            <p class="eyebrow"><span class="eyebrow__num">§02</span> Services and pricing</p>
+            <h2 id="servicesTitle">The <em>menu</em></h2>
           </div>
-          <p class="updated" id="pricesUpdated"></p>
+          <p class="lead">What you see is what you pay. <span class="updated" id="pricesUpdated"></span></p>
         </header>
 
-        <div class="menu" id="menu"></div>
+        <!-- Pre-rendered from the default prices in script.js (no-JS visitors and crawlers); the script re-renders it live. -->
+        <div class="menu" id="menu">
+          <div class="menu__group">
+            <h3 class="menu__title">Haircuts</h3>
+            <dl>
+              <div class="item"><dt>Signature Cut <small>45 min</small></dt><dd data-id="signature">$50</dd></div>
+              <div class="item"><dt>Skin Fade <small>50 min</small></dt><dd data-id="fade">$55</dd></div>
+              <div class="item"><dt>Kids Cut, 12 and under <small>30 min</small></dt><dd data-id="kids">$35</dd></div>
+              <div class="item"><dt>Senior and Military <small>45 min</small></dt><dd data-id="senior">$45</dd></div>
+            </dl>
+          </div>
+          <div class="menu__group">
+            <h3 class="menu__title">Shave and Beard</h3>
+            <dl>
+              <div class="item"><dt>Hot Towel Shave <small>40 min</small></dt><dd data-id="shave">$50</dd></div>
+              <div class="item"><dt>Beard Sculpt <small>30 min</small></dt><dd data-id="beard">$30</dd></div>
+              <div class="item"><dt>Line-Up <small>15 min</small></dt><dd data-id="lineup">$25</dd></div>
+              <div class="item"><dt>Head Shave <small>35 min</small></dt><dd data-id="headshave">$45</dd></div>
+            </dl>
+          </div>
+        </div>
 
-        <article class="signature">
-          <img src="images/shave.jpg" alt="Straight razor shave with a hot towel" loading="lazy" width="1356" height="1800">
+        <article class="signature theme-dark">
+          <div class="signature__media media"><img src="images/shave.jpg" srcset="images/shave-800.jpg 800w, images/shave.jpg 1600w" sizes="(max-width: 767px) 100vw, 50vw" alt="Straight razor shave over a lathered face" loading="lazy" width="1600" height="1600"></div>
           <div class="signature__body">
+            <p class="eyebrow">Most booked</p>
             <h3>The Full Service</h3>
             <p>Signature cut, beard sculpt and hot towel shave in one 80 minute appointment. Our most booked service.</p>
             <div class="signature__foot">
-              <span class="signature__price" data-price="full"></span>
+              <span class="signature__price" data-price="full">$110</span>
               <button type="button" class="btn btn--outline" data-book-service="full">Book a chair</button>
             </div>
           </div>
@@ -135,11 +254,15 @@
       </div>
     </section>
 
-    <!-- STYLE CONSULT -->
-    <section class="consult section" id="consult">
+    <!-- 03 STYLE CONSULT -->
+    <section class="consult section" id="consult" aria-labelledby="consultTitle">
+      <div class="section__bg" aria-hidden="true"><img src="images/bg-consult.jpg" alt="" loading="lazy" width="1600" height="1067"></div>
       <div class="wrap">
-        <header class="head head--left">
-          <h2>Not sure what to ask for?</h2>
+        <header class="head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__num">§03</span> Style consult</p>
+            <h2 id="consultTitle">Not sure what<br><em>to ask for?</em></h2>
+          </div>
           <p class="lead">Answer four quick questions. We'll recommend a cut, the right service and the barber who does it best.</p>
         </header>
 
@@ -198,7 +321,7 @@
                 <div><dt>Rebook every</dt><dd id="rEvery"></dd></div>
               </dl>
               <div class="result__barber">
-                <img id="rBarberImg" src="images/barber-marcus.jpg" alt="" width="1356" height="1800">
+                <img id="rBarberImg" src="images/barber-marcus-sm.jpg" alt="" width="240" height="320">
                 <div><p class="result__small">Best barber for this</p><p id="rBarber"></p></div>
               </div>
               <button type="button" class="btn btn--primary btn--block" id="rBook">Book a chair</button>
@@ -208,59 +331,70 @@
       </div>
     </section>
 
-    <!-- BARBERS -->
-    <section class="barbers section" id="barbers">
+    <!-- 04 BARBERS -->
+    <section class="barbers section" id="barbers" aria-labelledby="barbersTitle">
       <div class="wrap">
-        <header class="head head--left">
-          <h2>The barbers</h2>
+        <header class="head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__num">§04</span> The team</p>
+            <h2 id="barbersTitle">The <em>barbers</em></h2>
+          </div>
           <p class="lead">Four specialists, each with a craft they're known for.</p>
         </header>
         <div class="team">
           <article class="member">
-            <img src="images/barber-marcus.jpg" alt="Marcus Reed, owner and master barber" loading="lazy" width="1356" height="1800">
+            <div class="member__media media"><img src="images/barber-marcus.jpg" srcset="images/barber-marcus-sm.jpg 240w, images/barber-marcus.jpg 900w" sizes="(max-width: 899px) 50vw, 25vw" alt="Marcus Reed, owner and master barber" loading="lazy" width="900" height="1200"></div>
             <h3>Marcus Reed</h3>
             <p>Owner, master barber. Fades and tapers.</p>
+            <button type="button" class="member__book link" data-book-barber="marcus">Book with Marcus <i class="ph-light ph-arrow-right" aria-hidden="true"></i></button>
           </article>
           <article class="member">
-            <img src="images/barber-dre.jpg" alt="Andre Morales, senior barber" loading="lazy" width="1356" height="1800">
+            <div class="member__media media"><img src="images/barber-dre.jpg" srcset="images/barber-dre-sm.jpg 240w, images/barber-dre.jpg 900w" sizes="(max-width: 899px) 50vw, 25vw" alt="Andre Morales, senior barber" loading="lazy" width="900" height="1200"></div>
             <h3>Andre Morales</h3>
             <p>Senior barber. Line-ups, waves and designs.</p>
+            <button type="button" class="member__book link" data-book-barber="andre">Book with Andre <i class="ph-light ph-arrow-right" aria-hidden="true"></i></button>
           </article>
           <article class="member">
-            <img src="images/barber-tony.jpg" alt="Tony Lombardi, shave specialist" loading="lazy" width="1356" height="1800">
+            <div class="member__media media"><img src="images/barber-tony.jpg" srcset="images/barber-tony-sm.jpg 240w, images/barber-tony.jpg 900w" sizes="(max-width: 899px) 50vw, 25vw" alt="Tony Lombardi, shave specialist" loading="lazy" width="900" height="1200"></div>
             <h3>Tony Lombardi</h3>
             <p>Shave specialist. Classic cuts and razor work.</p>
+            <button type="button" class="member__book link" data-book-barber="tony">Book with Tony <i class="ph-light ph-arrow-right" aria-hidden="true"></i></button>
           </article>
           <article class="member">
-            <img src="images/barber-sam.jpg" alt="Sam Kwan, barber" loading="lazy" width="1356" height="1800">
+            <div class="member__media media"><img src="images/barber-sam.jpg" srcset="images/barber-sam-sm.jpg 240w, images/barber-sam.jpg 900w" sizes="(max-width: 899px) 50vw, 25vw" alt="Sam Kwan, barber" loading="lazy" width="900" height="1200"></div>
             <h3>Sam Kwan</h3>
             <p>Barber. Textured crops and curls.</p>
+            <button type="button" class="member__book link" data-book-barber="sam">Book with Sam <i class="ph-light ph-arrow-right" aria-hidden="true"></i></button>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- WORK -->
-    <section class="work section" id="work">
+    <!-- 05 WORK -->
+    <section class="work section" id="work" aria-labelledby="workTitle">
       <div class="wrap">
-        <header class="head head--split">
-          <h2>Recent work</h2>
-          <a href="#" class="link">See more on Instagram <i class="ph-light ph-arrow-up-right" aria-hidden="true"></i></a>
+        <header class="head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__num">§05</span> Portfolio</p>
+            <h2 id="workTitle">Recent <em>work</em></h2>
+          </div>
+          <p class="lead"><a href="#" class="link">See more on Instagram <i class="ph-light ph-arrow-up-right" aria-hidden="true"></i></a></p>
         </header>
         <div class="bento">
-          <img class="bento__a" src="images/fade.jpg" alt="Skin fade with a razor part, seen from behind" loading="lazy" width="1356" height="1800">
-          <img class="bento__b" src="images/taper.jpg" alt="Barber styling a classic side part taper, seen in the mirror" loading="lazy" width="1800" height="1007">
-          <img class="bento__c" src="images/beard.jpg" alt="Barber sculpting a full beard with clippers" loading="lazy" width="1800" height="1800">
-          <img class="bento__d" src="images/tools.jpg" alt="Straight razor, comb, scissors, shaving brush, pomade and clippers on slate" loading="lazy" width="1800" height="1800">
+          <div class="bento__a media"><img src="images/fade.jpg" srcset="images/fade-800.jpg 800w, images/fade.jpg 1600w" sizes="(max-width: 767px) 50vw, 36vw" alt="Skin fade with a hard part, cut with clippers" loading="lazy" width="1600" height="2000"></div>
+          <div class="bento__b media"><img src="images/taper.jpg" srcset="images/taper-800.jpg 800w, images/taper.jpg 1600w" sizes="(max-width: 767px) 100vw, 64vw" alt="Scissor-over-comb on a classic side part" loading="lazy" width="1600" height="1067"></div>
+          <div class="bento__c media"><img src="images/beard.jpg" srcset="images/beard-800.jpg 800w, images/beard.jpg 1600w" sizes="(max-width: 767px) 50vw, 32vw" alt="Barber trimming a full beard with clippers" loading="lazy" width="1600" height="1600"></div>
+          <div class="bento__d media"><img src="images/tools.jpg" srcset="images/tools-800.jpg 800w, images/tools.jpg 1600w" sizes="(max-width: 767px) 50vw, 32vw" alt="Clippers, trimmer, scissors, straight razor and comb at a barber's station" loading="lazy" width="1600" height="1600"></div>
         </div>
       </div>
     </section>
 
-    <!-- REVIEWS -->
-    <section class="reviews section">
+    <!-- REVIEWS: the one full-bleed band -->
+    <section class="reviews" aria-label="Reviews">
+      <div class="reviews__bg" aria-hidden="true"><img src="images/bg-reviews.jpg" alt="" loading="lazy" width="1920" height="1080"></div>
       <div class="wrap reviews__inner">
-        <div class="stars" aria-label="Rated 5 out of 5">
-          <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+        <div class="stars" role="img" aria-label="Rated 5 out of 5">
+          <i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i>
         </div>
         <div class="quotes" aria-live="polite">
           <figure class="quote is-active">
@@ -277,18 +411,22 @@
           </figure>
         </div>
         <div class="quotes__nav">
-          <button class="icon-btn" id="prevQuote" aria-label="Previous review"><i class="ph-light ph-arrow-left"></i></button>
+          <button class="icon-btn" id="prevQuote" aria-label="Previous review"><i class="ph-light ph-arrow-left" aria-hidden="true"></i></button>
           <span class="quotes__count" id="quoteCount">1 / 3</span>
-          <button class="icon-btn" id="nextQuote" aria-label="Next review"><i class="ph-light ph-arrow-right"></i></button>
+          <button class="icon-btn" id="nextQuote" aria-label="Next review"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></button>
         </div>
       </div>
     </section>
 
-    <!-- UNIQUE FEATURES -->
-    <section class="extras section" id="extras">
+    <!-- 06 UNIQUE FEATURES -->
+    <section class="extras section" id="extras" aria-labelledby="extrasTitle">
+      <div class="section__bg" aria-hidden="true"><img src="images/bg-extras.jpg" alt="" loading="lazy" width="1600" height="1067"></div>
       <div class="wrap">
-        <header class="head head--left">
-          <h2>Small things that save you time.</h2>
+        <header class="head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__num">§06</span> Extras</p>
+            <h2 id="extrasTitle">Small things that<br><em>save you time.</em></h2>
+          </div>
           <p class="lead">Features you won't find at most barbershops, built into every booking.</p>
         </header>
         <div class="extras__list">
@@ -316,12 +454,12 @@
       </div>
     </section>
 
-    <!-- BOOK + VISIT -->
-    <section class="book section" id="book">
+    <!-- 07 BOOK + VISIT -->
+    <section class="book section" id="book" aria-labelledby="bookTitle">
       <div class="wrap book__grid">
         <div class="book__form">
-          <p class="eyebrow">Reservations</p>
-          <h2>Book a chair</h2>
+          <p class="eyebrow"><span class="eyebrow__num">§07</span> Reservations</p>
+          <h2 id="bookTitle">Book a <em>chair</em></h2>
           <p class="lead">Confirmation by text. Free cancellation up to 2 hours before.</p>
 
           <form id="bookingForm" novalidate>
@@ -393,6 +531,7 @@
         </div>
 
         <aside class="visit" id="visit">
+          <div class="visit__media media"><img src="images/storefront.jpg" srcset="images/storefront-800.jpg 800w, images/storefront.jpg 1600w" sizes="(max-width: 1023px) 100vw, 36vw" alt="A barbershop sign and barber pole above a shop door" loading="lazy" width="1600" height="1067"></div>
           <div class="visit__block">
             <h3><i class="ph-light ph-map-pin" aria-hidden="true"></i> Location</h3>
             <!-- Placeholder address: replace with the real one -->
@@ -421,11 +560,14 @@
       </div>
     </section>
 
-    <!-- MY VISITS -->
-    <section class="records section" id="records">
+    <!-- 08 MY VISITS -->
+    <section class="records section" id="records" aria-labelledby="recordsTitle">
       <div class="wrap">
-        <header class="head head--left">
-          <h2>My visits</h2>
+        <header class="head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__num">§08</span> Your records</p>
+            <h2 id="recordsTitle">My <em>visits</em></h2>
+          </div>
           <p class="lead">Track your bookings, cut history, notes and rewards with the mobile number you booked with.</p>
         </header>
 
@@ -479,23 +621,31 @@
   </main>
 
   <footer class="footer">
-    <div class="wrap">
-      <p class="footer__word">Automatebarber<span>.ai</span></p>
-      <div class="footer__row">
-        <nav class="footer__links" aria-label="Footer">
-          <a href="#services">Prices</a>
-          <a href="#consult">Style consult</a>
-          <a href="#records">My visits</a>
-          <a href="#book">Book a chair</a>
-          <button type="button" class="footer__staff" id="openStaff"><i class="ph-light ph-gear-six" aria-hidden="true"></i> Staff: update prices</button>
-        </nav>
-        <nav class="footer__social" aria-label="Social">
-          <a href="#" aria-label="Instagram"><i class="ph-light ph-instagram-logo"></i></a>
-          <a href="#" aria-label="TikTok"><i class="ph-light ph-tiktok-logo"></i></a>
-          <a href="#" aria-label="Google reviews"><i class="ph-light ph-google-logo"></i></a>
-        </nav>
+    <div class="footer__bg" aria-hidden="true"><img src="images/bg-footer.jpg" alt="" loading="lazy" width="1200" height="800"></div>
+    <div class="wrap footer__inner">
+      <a href="#top" class="footer__logo" aria-label="Automatebarber.ai home">
+        <img src="images/brand/automatebarber-logo-stacked-on-dark.svg" alt="" width="828" height="290" loading="lazy">
+      </a>
+      <p class="footer__line">123 Main Street, Your City, ST 00000 <span aria-hidden="true">/</span> <a href="tel:+15551234567">(555) 123-4567</a></p>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#services">Prices</a>
+        <a href="#consult">Style consult</a>
+        <a href="#records">My visits</a>
+        <a href="#book">Book a chair</a>
+        <button type="button" class="footer__staff" id="openStaff"><i class="ph-light ph-gear-six" aria-hidden="true"></i> Staff: update prices</button>
+      </nav>
+      <nav class="footer__social" aria-label="Social">
+        <a href="#" aria-label="Instagram"><i class="ph-light ph-instagram-logo" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="ph-light ph-tiktok-logo" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Google reviews"><i class="ph-light ph-google-logo" aria-hidden="true"></i></a>
+      </nav>
+      <div class="footer__bar">
+        <p class="footer__copy">© <span id="year"></span> Automatebarber.ai. All rights reserved.</p>
+        <a class="gs-credit" href="https://www.groundstandard.com">
+          <span>Backed by</span>
+          <img src="images/brand/ground-standard-agency-lockup-light.png" alt="Ground Standard Agency" width="1920" height="196" loading="lazy">
+        </a>
       </div>
-      <p class="footer__copy">© <span id="year"></span> Automatebarber.ai. All rights reserved.</p>
     </div>
   </footer>
 
@@ -507,13 +657,13 @@
           <h2 id="staffTitle">Update prices</h2>
           <p class="lead">Changes go live on the menu and booking form as soon as you save.</p>
         </div>
-        <button type="button" class="icon-btn" id="closeStaff" aria-label="Close"><i class="ph-light ph-x"></i></button>
+        <button type="button" class="icon-btn" id="closeStaff" aria-label="Close"><i class="ph-light ph-x" aria-hidden="true"></i></button>
       </header>
       <div class="staff__rows" id="staffRows"></div>
-      <footer class="staff__foot">
+      <div class="staff__foot">
         <button type="button" class="btn btn--outline btn--sm" id="resetPrices">Reset to defaults</button>
         <button type="submit" class="btn btn--primary btn--sm" id="savePrices">Save prices</button>
-      </footer>
+      </div>
     </form>
   </dialog>
 
