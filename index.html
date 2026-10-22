@@ -667,6 +667,31 @@
     </form>
   </dialog>
 
+  <!-- CLAIM THIS WEBSITE: offered after a booking, to the shop owner trying the system -->
+  <dialog class="claim" id="claim" aria-labelledby="claimTitle" aria-describedby="claimLead">
+    <button type="button" class="icon-btn claim__close" id="closeClaim" aria-label="Close"><i class="ph-light ph-x" aria-hidden="true"></i></button>
+    <div class="claim__media media"><img src="images/storefront.jpg" srcset="images/storefront-800.jpg 800w, images/storefront.jpg 1600w" sizes="(max-width: 767px) 100vw, 420px" alt="" loading="lazy" width="1600" height="1067"></div>
+    <div class="claim__body">
+      <p class="eyebrow"><i class="ph-light ph-check-circle" aria-hidden="true"></i> Booking received</p>
+      <h2 id="claimTitle">Claim this website<br><em>for your business.</em></h2>
+      <p class="lead" id="claimLead">You just booked the way your customers will. Get this same website with your shop's name, logo, services and prices, and take bookings like this one.</p>
+      <dl class="claim__booking">
+        <dt>Your test booking</dt>
+        <dd id="claimBooking"></dd>
+      </dl>
+      <ul class="claim__list">
+        <li><i class="ph-light ph-calendar-check" aria-hidden="true"></i> Online booking, day or night</li>
+        <li><i class="ph-light ph-tag" aria-hidden="true"></i> Prices you update yourself</li>
+        <li><i class="ph-light ph-seal-check" aria-hidden="true"></i> Visit records and rewards</li>
+        <li><i class="ph-light ph-paint-brush" aria-hidden="true"></i> Your name, logo and colors</li>
+      </ul>
+      <div class="claim__actions">
+        <a class="btn btn--primary" id="claimLink" href="#" autofocus>Claim this website <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a>
+        <button type="button" class="btn btn--outline" id="keepExploring">Keep exploring</button>
+      </div>
+    </div>
+  </dialog>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <a href="#book" class="mobile-cta btn btn--primary">Book a chair</a>
