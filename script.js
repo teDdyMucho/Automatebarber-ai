@@ -60,6 +60,10 @@ const MAX_GUESTS = 3;
 
 const SHOP = { name: 'Automatebarber.ai', address: '123 Main Street, Your City, ST 00000' };
 
+// After a booking, the shop owner trying the system is offered this website. The button opens
+// the GoHighLevel funnel, with the booking's name and phone passed along for its form.
+const CLAIM_URL = '';
+
 /* ---------- Storage helpers ---------- */
 const store = {
   get(key, fallback) {
@@ -572,6 +576,9 @@ form.addEventListener('submit', e => {
   msg.innerHTML = `You're booked, ${esc(main.name.split(' ')[0])}. ${service(main.service).name}${main.reward ? ' (free reward)' : ''} with ${barber(main.barber).name}, ${fmtDate(main.date)} at ${main.time}.${guestText}
     <span class="form__actions"><button type="button" class="mini-link" data-ics="${main.id}"><i class="ph-light ph-calendar-plus" aria-hidden="true"></i> Add to calendar</button> <a href="#records">View in My visits</a></span>`;
 
+  // the offer waits for the funnel's link, so the live site never shows a button that goes nowhere
+  if (CLAIM_URL) openClaim(main, guests);
+
   const keep = { name: data.name, phone: data.phone };
   form.reset();
   guestList.innerHTML = '';
@@ -581,6 +588,27 @@ form.addEventListener('submit', e => {
   renderSummary();
   fillTimes();
 });
+
+/* ---------- Claim this website ---------- */
+const claim = $('claim');
+
+function openClaim(main, guests) {
+  $('claimBooking').textContent = `${service(main.service).name} with ${barber(main.barber).name}, ${fmtDate(main.date)} at ${main.time}`
+    + (guests.length ? `, plus ${guests.length} guest${guests.length > 1 ? 's' : ''}` : '');
+  if (CLAIM_URL) {
+    const url = new URL(CLAIM_URL);
+    const [first, ...rest] = main.name.split(/\s+/);
+    url.searchParams.set('first_name', first);
+    if (rest.length) url.searchParams.set('last_name', rest.join(' '));
+    url.searchParams.set('phone', main.phone);
+    $('claimLink').href = url.href;
+  }
+  claim.showModal();
+}
+
+$('closeClaim').addEventListener('click', () => claim.close());
+$('keepExploring').addEventListener('click', () => claim.close());
+claim.addEventListener('click', e => { if (e.target === claim) claim.close(); });
 
 $('formMsg').addEventListener('click', e => {
   const b = e.target.closest('[data-ics]');

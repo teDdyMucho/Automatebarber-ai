@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Thank you | Automatebarber.ai</title>
+  <meta name="description" content="Thanks for claiming your website. We'll set it up with your shop's name, logo, services and prices.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#120e0b">
+  <link rel="icon" href="/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/images/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@300..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="ab-mark" viewBox="0 0 64 64"><path d="M30.6 15.71L12.5 57Q16.33 32.16 26.35 12.73ZM33.4 15.71L37.65 12.73Q47.67 32.16 51.5 57ZM26 12.5A6 6 0 1 1 38 12.5A6 6 0 1 1 26 12.5ZM28.9 12.5A3.1 3.1 0 1 0 35.1 12.5A3.1 3.1 0 1 0 28.9 12.5ZM30.5 12.5A1.5 1.5 0 1 1 33.5 12.5A1.5 1.5 0 1 1 30.5 12.5ZM18.81 39.4H29.6V42.6H18.81ZM34.4 39.4H45.19V42.6H34.4Z"/></symbol>
+  </svg>
+
+  <main>
+  <!-- Where the GoHighLevel funnel sends a shop owner after they claim the website -->
+  <section class="nf ty">
+    <div class="nf__bg" aria-hidden="true"><img src="/images/storefront.jpg" alt=""></div>
+    <div class="wrap nf__inner">
+      <a href="/" class="logo" aria-label="Automatebarber.ai home">
+        <svg class="logo__mark" aria-hidden="true"><use href="#ab-mark"/></svg>
+        <span class="logo__word" aria-hidden="true">Automate<em>barber</em><span>.ai</span></span>
+      </a>
+      <p class="eyebrow"><i class="ph-light ph-check-circle" aria-hidden="true"></i> Website claimed</p>
+      <h1 class="nf__title"><span id="tyThanks">Thank you.</span><br><em>Your website is on its way.</em></h1>
+      <p class="lead">We have your details. Next, we set up this website for your shop, with your name, logo, services and prices.</p>
+      <ol class="ty__steps">
+        <li>
+          <span class="ty__num">01</span>
+          <h2>We review your details</h2>
+          <p>Your shop's name, logo, services and prices.</p>
+        </li>
+        <li>
+          <span class="ty__num">02</span>
+          <h2>We set up your website</h2>
+          <p>With the booking, live prices, visit records and rewards you just tried.</p>
+        </li>
+        <li>
+          <span class="ty__num">03</span>
+          <h2>We get in touch</h2>
+          <p>To show you your website and take it live.</p>
+        </li>
+      </ol>
+      <nav class="nf__links" aria-label="Next">
+        <a href="/" class="btn btn--outline">Back to the website</a>
+      </nav>
+    </div>
+  </section>
+  </main>
+
+  <footer class="footer footer--slim">
+    <div class="wrap footer__inner">
+      <div class="footer__bar">
+        <p class="footer__copy">© <span id="year">2026</span> Automatebarber.ai. All rights reserved.</p>
+        <a class="gs-credit" href="https://www.groundstandard.com">
+          <span>Backed by</span>
+          <img src="/images/brand/ground-standard-agency-lockup-light.png" alt="Ground Standard Agency" width="1920" height="196">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // The funnel can pass the first name (?first_name=...). Anything that isn't a plain name,
+    // such as a merge field the funnel left unfilled, keeps the plain thank you.
+    var first = (new URLSearchParams(location.search).get('first_name') || '').trim();
+    if (/^[\p{L}][\p{L}' .-]{0,39}$/u.test(first)) document.getElementById('tyThanks').textContent = 'Thank you, ' + first + '.';
+  </script>
+</body>
+</html>
