@@ -47,6 +47,7 @@
   --z-nav: 20;
   --z-cta: 15;
   --z-toast: 30;
+  --z-mark: 40;
 }
 
 /* The paper band re-derives the tokens instead of inverting them */
@@ -83,6 +84,17 @@ body {
   text-rendering: optimizeLegibility;
 }
 html.menu-open { overflow: hidden; }
+
+/* The site is a sample: the AutomateBarbers trademark runs down both edges of the screen, in the
+   margin outside the content and never over it. It takes no clicks, and screen readers never meet it. */
+:root { --mark-w: clamp(10px, calc(max((100vw - var(--wrap)) / 2, 0px) + var(--gutter) - 16px), 56px); }
+body::before, body::after {
+  content: ""; position: fixed; top: 0; bottom: 0; z-index: var(--z-mark); width: var(--mark-w); pointer-events: none;
+  background: url(images/brand/automatebarbers-watermark-left.svg) 50% 0 / 100% auto repeat-y;
+  opacity: .24;
+}
+body::before { left: 0; }
+body::after { right: 0; background-image: url(images/brand/automatebarbers-watermark-right.svg); }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 h1, h2, h3, p, figure, blockquote, dl, dd { margin: 0; }
