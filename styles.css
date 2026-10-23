@@ -695,11 +695,6 @@ form { margin-top: clamp(32px, 6vw, 48px); }
 }
 .footer__copy { color: var(--faint); font-size: .85rem; }
 
-/* The Ground Standard credit (house rule: identical on every site) */
-.gs-credit { display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 12px; text-decoration: none; opacity: .85; transition: opacity .25s; }
-.gs-credit:hover, .gs-credit:focus-visible { opacity: 1; }
-.gs-credit span { font: 500 11px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; color: var(--muted); }
-.gs-credit img { display: block; height: 26px; width: auto; max-width: 100%; }
 
 /* ---------- Staff price manager ---------- */
 .staff {
