@@ -1,6 +1,6 @@
 # Automatebarber.ai: design PRD
 
-Built with the Ground Standard website builder, 22 October 2026. This is an **enhancement of
+Written 22 October 2026. This is an **enhancement of
 an existing one-page system**, not a new site: every section, feature and line of copy stays
 as it was. What changed is the design, the photography, the price data and the logo.
 
@@ -44,7 +44,7 @@ prices that the staff update live. Four barbers, nine services, open seven days.
 | Logo placement | Left, mark and wordmark on one line; stacked lockup centred in the footer |
 | Opening style | Full-bleed single photograph plus the pole (no crossfade loop: the pole is the page's one perpetual animation) |
 | Header variant | B: logo left, everything right; transparent over the hero, solid espresso once scrolled; full-height sheet under 1100px with the booking button pinned at the bottom |
-| Footer variant | D: one centred column (stacked logo, address and phone, links, socials), bottom bar with © and the Ground Standard credit |
+| Footer variant | D: one centred column (stacked logo, address and phone, links, socials), bottom bar with © |
 | Alignment system | Split section heads: numbered mono eyebrow and a two-line serif headline on the left (1.15fr), one sentence on the right (0.85fr) on the headline's baseline; content left-aligned beneath |
 | Container | 1240px page, 46ch leads, 65ch prose |
 | Signature moment | **The barber pole turns only while the shop is actually open**, read from the same hours as the booking form. Closed, it stops and dims, and the status says when it opens |
