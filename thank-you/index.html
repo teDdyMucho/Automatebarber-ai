@@ -50,9 +50,13 @@
           <p>To show you your website and take it live.</p>
         </li>
       </ol>
-      <nav class="nf__links" aria-label="Next">
-        <a href="/" class="btn btn--outline">Back to the website</a>
-      </nav>
+      <div class="ty__next">
+        <a href="https://automatebarbers.com/" class="btn btn--primary" id="tyGo">Go to AutomateBarbers.com <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a>
+        <p class="ty__redirect" id="tyRedirect" role="status" hidden>
+          <span id="tyRedirectText"><span aria-hidden="true">Taking you there in <span id="tyCount">10</span> <span id="tyUnit">seconds</span>.</span><span class="sr-only">Taking you to AutomateBarbers.com in 10 seconds.</span></span>
+          <button type="button" class="mini-link" id="tyStay">Stay on this page</button>
+        </p>
+      </div>
     </div>
   </section>
   </main>
@@ -71,6 +75,25 @@
     // such as a merge field the funnel left unfilled, keeps the plain thank you.
     var first = (new URLSearchParams(location.search).get('first_name') || '').trim();
     if (/^[\p{L}][\p{L}' .-]{0,39}$/u.test(first)) document.getElementById('tyThanks').textContent = 'Thank you, ' + first + '.';
+
+    // A moment to read the thank you, then on to the official AutomateBarbers site. The visitor can stay.
+    // Without JavaScript there is no countdown, only the button.
+    var go = document.getElementById('tyGo'), box = document.getElementById('tyRedirect');
+    var count = document.getElementById('tyCount'), unit = document.getElementById('tyUnit');
+    var left = 10;
+    box.hidden = false;
+    var timer = setInterval(function () {
+      left -= 1;
+      count.textContent = left;
+      unit.textContent = left === 1 ? 'second' : 'seconds';
+      if (left <= 0) { clearInterval(timer); location.href = go.href; }
+    }, 1000);
+    document.getElementById('tyStay').addEventListener('click', function () {
+      clearInterval(timer);
+      document.getElementById('tyRedirectText').textContent = "You're staying on this page.";
+      this.hidden = true;
+      go.focus();
+    });
   </script>
 </body>
 </html>
