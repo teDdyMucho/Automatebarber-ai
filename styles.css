@@ -91,7 +91,7 @@ html.menu-open { overflow: hidden; }
 body::before, body::after {
   content: ""; position: fixed; top: 0; bottom: 0; z-index: var(--z-mark); width: var(--mark-w); pointer-events: none;
   background: url(images/brand/automatebarbers-watermark-left.svg) 50% 0 / 100% auto repeat-y;
-  opacity: .18;
+  opacity: .24;
 }
 body::before { left: 0; }
 body::after { right: 0; background-image: url(images/brand/automatebarbers-watermark-right.svg); }
